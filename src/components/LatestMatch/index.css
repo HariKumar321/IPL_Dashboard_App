@@ -1,0 +1,88 @@
+/* Write your CSS here */
+
+.latest-match-container {
+  min-width: 100%;
+}
+
+.latest-match {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.main-card {
+  background-color: transparent;
+  border-radius: 9px;
+  height: 100%;
+  width: 100%;
+  border: 1px solid white;
+  padding: 9px;
+}
+
+.upper-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.competing-team {
+  font-size: 20px;
+  color: white;
+}
+
+.date {
+  font-size: 19px;
+  color: white;
+}
+
+.venue {
+  font-size: 14px;
+  color: white;
+}
+
+.result {
+  font-size: 14px;
+  color: white;
+}
+
+.competing-team-logo {
+  width: 70px;
+  height: 70px;
+  align-self: center;
+  margin-left: 10px;
+}
+
+.header {
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.sub-text {
+  color: white;
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .hr-line {
+    display: none;
+  }
+
+  .main-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .upper-container {
+    display: none;
+  }
+
+  .competing-team-logo {
+    width: 270px;
+    height: 140px;
+    align-self: center;
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+}

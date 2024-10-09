@@ -1,0 +1,83 @@
+/* Write your CSS here */
+.banner-container {
+  text-align: center;
+}
+
+.team-banner {
+  width: 80%;
+  height: 100%;
+}
+
+/* latest match */
+.latest-match-container {
+  min-width: 100%;
+}
+
+.latest-match {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.main-card {
+  background-color: transparent;
+  border-radius: 9px;
+  height: 100%;
+  width: 80%;
+  border: 1px solid white;
+  padding: 9px;
+}
+
+.upper-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.competing-team {
+  font-size: 20px;
+  color: white;
+}
+
+.date {
+  font-size: 19px;
+  color: white;
+}
+
+.venue {
+  font-size: 14px;
+  color: white;
+}
+
+.result {
+  font-size: 14px;
+  color: white;
+}
+
+.competing-team-logo {
+  width: 70px;
+  height: 70px;
+  align-self: center;
+  margin-left: 10px;
+}
+
+.header {
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.sub-text {
+  color: white;
+  font-size: 14px;
+}
+
+.ul-container {
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 12px;
+}
