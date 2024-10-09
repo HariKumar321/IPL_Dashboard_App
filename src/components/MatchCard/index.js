@@ -1,24 +1,36 @@
 // Write your code here
+import {Component} from 'react'
+
 import './index.css'
 
-const MatchCard = props => {
-  const {eachObj} = props
-  const {competingTeam, competingTeamLogo, matchStatus, result} = eachObj
+class MatchCard extends Component {
+  getMatchStatusClassName = matchStatus => {
+    if (matchStatus === 'Won') {
+      return 'match-won'
+    }
+    return 'match-lost'
+  }
 
-  const matchStatusStyle = matchStatus === 'Won' ? 'green-color' : 'red-color'
+  render() {
+    const {matchData} = this.props
+    const {competingTeamLogo, competingTeam, matchStatus, result} = matchData
+    const matchStatusClassName = `match-status ${this.getMatchStatusClassName(
+      matchStatus,
+    )}`
 
-  return (
-    <li className="li-container">
-      <img
-        src={competingTeamLogo}
-        alt={`competing team ${competingTeam}`}
-        className="competing-team-logo"
-      />
-      <p className="competing-team"> {competingTeam} </p>
-      <p className="result"> {result} </p>
-      <p className={`${matchStatusStyle}`}> {matchStatus} </p>
-    </li>
-  )
+    return (
+      <li className="match-card">
+        <img
+          src={competingTeamLogo}
+          className="competing-team-logo"
+          alt={`competing team ${competingTeam}`}
+        />
+        <p className="competing-team-name">{competingTeam}</p>
+        <p className="result">{result}</p>
+        <p className={matchStatusClassName}>{matchStatus}</p>
+      </li>
+    )
+  }
 }
 
 export default MatchCard

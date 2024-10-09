@@ -1,5 +1,4 @@
 // Write your code here
-
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 
@@ -10,52 +9,50 @@ import './index.css'
 const teamsApiUrl = 'https://apis.ccbp.in/ipl'
 
 class Home extends Component {
-  state = {iplTeamList: [], isLoading: true}
+  state = {
+    isLoading: true,
+    teams: [],
+  }
 
   componentDidMount() {
-    this.getIplTeamCard()
+    this.getTeams()
   }
 
-  getIplTeamCard = async () => {
+  setTeams = (formattedData, isLoading) => {
+    this.setState({
+      teams: formattedData,
+      isLoading,
+    })
+  }
+
+  getTeams = async () => {
     const response = await fetch(teamsApiUrl)
-    const data = await response.json()
-    const backEndData = data.teams
-
-    const camelCaseData = backEndData.map(eachObj => ({
-      id: eachObj.id,
-      name: eachObj.name,
-      teamImageUrl: eachObj.team_image_url,
+    const fetchedData = await response.json()
+    const formattedData = fetchedData.teams.map(team => ({
+      name: team.name,
+      id: team.id,
+      teamImageURL: team.team_image_url,
     }))
-
-    this.setState({iplTeamList: camelCaseData, isLoading: false})
+    this.setTeams(formattedData, false)
   }
 
-  renderListOfTeams = () => {
-    const {iplTeamList} = this.state
+  renderTeamsList = () => {
+    const {teams} = this.state
 
     return (
-      <div>
-        <div className="logo-container">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/ipl-logo-img.png"
-            alt="ipl logo"
-            className="ipl-main-img"
-          />
-          <h1 className="main-heading"> IPL Dashboard </h1>
-        </div>
-
-        <ul className="team-card-container">
-          {iplTeamList.map(eachObj => (
-            <TeamCard key={eachObj.id} eachObj={eachObj} />
-          ))}
-        </ul>
-      </div>
+      <ul className="teams-list">
+        {teams.map(team => (
+          <TeamCard teamData={team} key={team.id} />
+        ))}
+      </ul>
     )
   }
 
-  renderFetchingData = () => (
-    <div testid="loader">
-      <Loader type="Oval" color="#ffffff" height={50} width={50} />
+  renderLoader = () => (
+    <div data-testid="loader" className="loader-container">
+      <div className="loader-card">
+        <Loader type="Oval" color="#ffffff" height="50" />
+      </div>
     </div>
   )
 
@@ -63,8 +60,18 @@ class Home extends Component {
     const {isLoading} = this.state
 
     return (
-      <div className="bg-container">
-        {isLoading ? this.renderFetchingData() : this.renderListOfTeams()}
+      <div className="home-route-container">
+        <div className="teams-list-container">
+          <div className="ipl-dashboard-heading-container">
+            <img
+              src="https://assets.ccbp.in/frontend/react-js/ipl-logo-img.png"
+              alt="ipl logo"
+              className="ipl-logo"
+            />
+            <h1 className="ipl-dashboard-heading">IPL Dashboard</h1>
+          </div>
+          {isLoading ? this.renderLoader() : this.renderTeamsList()}
+        </div>
       </div>
     )
   }
